@@ -1,0 +1,11 @@
+target/
+/target/
+/out/
+.idea/
+/*.iml
+.DS_Store
+Thumbs.db
+application.properties
+application.yml
+*.log
+
