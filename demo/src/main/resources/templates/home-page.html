@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ - Thư viện</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: header}"></th:block>
+
+<!-- Banner -->
+<div class="banner">
+    <img src="/images/banner-bac-ho.png" alt="Cuộc thi Bác Hồ" style="width:100%; height:auto;" />
+</div>
+
+<!-- Nổi bật -->
+<section class="section">
+    <div class="section-header">
+        <h2>Nổi bật</h2>
+        <a href="#" class="see-more">Xem thêm</a>
+    </div>
+    <div class="book-list">
+        <div class="book-card" th:each="book : ${featuredBooks}">
+            <div class="book-cover"></div>
+            <h3 th:text="${book.title}"></h3>
+            <p th:text="${book.description}"></p>
+            <div class="book-actions">
+                <button class="btn-outline">Yêu thích</button>
+                <button class="btn-primary">Mượn sách</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mới cập nhật -->
+<section class="section">
+    <div th:replace="fragments/latest-books :: latest"></div>
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
