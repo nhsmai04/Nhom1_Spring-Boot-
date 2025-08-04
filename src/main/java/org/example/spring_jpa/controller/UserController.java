@@ -82,6 +82,15 @@ public class UserController {
                         .build());
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<ResponseObject> getUserByFirstName(@RequestParam("firstname") String firstname) {
+        User user = userService.getUserByFirstName(firstname);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .data(user)
+                .status(HttpStatus.OK)
+                .message("Get user information successfully!")
+                .build());
+    }
 
 
 

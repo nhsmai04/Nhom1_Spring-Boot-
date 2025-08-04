@@ -7,14 +7,16 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.Optional;
+
 
 @Repository
 public interface UserRepository extends CrudRepository<User,Integer> {
 
 
-    User findUserByLastname(String lastname);
-    User findUserByFirstname(String lastname);
-    User findUserByEmail(String email);
+    Optional<User> findUserByLastname(String lastname);
+    Optional<User> findUserByFirstname(String lastname);
+    Optional<User> findUserByEmail(String email);
     Iterable<User> findAll(Sort name);
     void deleteById(int  id);
 

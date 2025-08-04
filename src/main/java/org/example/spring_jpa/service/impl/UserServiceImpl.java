@@ -1,6 +1,7 @@
 package org.example.spring_jpa.service.impl;
 
 import org.example.spring_jpa.dto.UserDto;
+import org.example.spring_jpa.exception.NotFoundException;
 import org.example.spring_jpa.model.User;
 import org.example.spring_jpa.repository.UserRepository;
 import org.example.spring_jpa.service.UserService;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -33,27 +35,29 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Integer id)
     {
-        if(userRepository.findById(id).isPresent())
-            return userRepository.findById(id).get();
-        return null;
+
+        return userRepository.findById(id).orElseThrow(()-> new NotFoundException("User not found"));
     }
 
     @Override
     public User getUserByLastName(String lastname)
     {
-        return userRepository.findUserByLastname(lastname);
+
+        return userRepository.findUserByLastname(lastname).orElseThrow(()-> new NotFoundException("User not found"));
     }
 
     @Override
     public User getUserByFirstName(String firstname)
     {
-        return userRepository.findUserByFirstname(firstname);
+
+        return userRepository.findUserByFirstname(firstname).orElseThrow(()-> new NotFoundException("User not found"));
     }
 
     @Override
     public User getUserByEmail(String email)
     {
-        return userRepository.findUserByEmail(email);
+
+        return userRepository.findUserByEmail(email).orElseThrow(()-> new NotFoundException("User not found"));
     }
 
     @Override

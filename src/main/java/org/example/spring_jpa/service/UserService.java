@@ -3,6 +3,8 @@ package org.example.spring_jpa.service;
 import org.example.spring_jpa.dto.UserDto;
 import org.example.spring_jpa.model.User;
 
+import java.util.Optional;
+
 
 public interface UserService {
 

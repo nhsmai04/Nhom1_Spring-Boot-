@@ -11,6 +11,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalException {
 
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<ResponseObject> handleNotFoundException(NotFoundException ex) {
+     return   ResponseEntity.badRequest().body(
+                ResponseObject.builder()
+                        .status(HttpStatus.NOT_FOUND)
+                        .message(ex.getMessage())
+                        .data(null)
+                        .build()
+        );
+
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<ResponseObject> handleGeneralException(Exception e) {
