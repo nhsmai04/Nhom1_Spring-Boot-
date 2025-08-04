@@ -1,5 +1,4 @@
 target/
-/target/
 /out/
 .idea/
 /*.iml
@@ -8,4 +7,3 @@ Thumbs.db
 application.properties
 application.yml
 *.log
-

@@ -4,6 +4,7 @@ import com.example.todolist.entity.Todo;
 import com.example.todolist.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -20,5 +21,21 @@ public class TodoService {
 
     public Todo createTodo(Todo todo) {
         return todoRepository.save(todo);
+    }
+
+    public Optional<Todo> getTodoByTitle(String title){
+        return todoRepository.findByTitle(title);
+    }
+
+    public Optional<Todo> getTodoById(Long id){
+        return todoRepository.findById(id);
+    }
+
+    public Todo saveTodo(Todo todo){
+        return todoRepository.save(todo);
+    }
+
+    public void deleteTodo(Long id){
+        todoRepository.deleteById(id);
     }
 }
