@@ -24,7 +24,7 @@ Dự án này dùng để demo các nội dung sau:
 - `/api/books` – Thêm sách (POST)
 - `/api/books/{id}` – Cập nhật sách (PUT)
 - `/api/books/{id}` – Xoá sách (DELETE)
-  🟡 **Đang triển khai**
+  🟡 **Đã hoàn thành**
 
 ---
 
@@ -42,7 +42,7 @@ Dự án này dùng để demo các nội dung sau:
 | `403 Forbidden`    | Không đủ quyền               | Đăng nhập nhưng sai role  |
 | `404 Not Found`    | Không tìm thấy               | ID sách không tồn tại     |
 
-✅ **Đang triển khai**
+✅ **Đã hoàn thành**
 
 ---
 
