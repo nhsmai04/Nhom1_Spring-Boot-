@@ -1,0 +1,382 @@
+html {
+    font-size: 16px; /* 1rem = 16px */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #071C38;
+    background-color: #E7EDF5;
+    margin: 0;
+    padding: 0;
+}
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #1a4fa3;
+    font-family: 'Roboto Medium', sans-serif;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+.search-bar {
+    flex: 1; /* ✅ Cho phép input mở rộng */
+    max-width: 25rem; /* hoặc bỏ đi nếu muốn nó linh hoạt */
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    border: 0px solid #ccc;
+    background-color: #E7EDF5;
+    box-sizing: border-box;
+}
+
+.auth-buttons .btn {
+    margin-left: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-outline {
+    background: white;
+    color: #134F9F;
+    font-size: 1rem;
+    border: 2px solid #134F9F !important;
+    border-radius: 0.375rem;
+}
+
+.btn-primary {
+    background: #1a4fa3;
+    color: white;
+    font-size: 1rem !important;
+    padding: 0.75rem 1rem;
+    border: 2px solid #134F9F !important;
+    border-radius: 0.375rem;
+}
+
+/* Login Form */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1.25rem;
+}
+
+.login-form {
+    background: white;
+    padding: 5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 32rem; 
+    width: 100%;
+}
+
+.login-title {
+    text-align: center;
+    color: #134F9F;
+    font-size: 2.625rem;
+    margin: 0 0 1.5rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group input {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(7, 28, 56);
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    background-color: #E7EDF5;
+    margin-top: 0.25rem;
+    font-size: 1rem;
+}
+
+.form-group input::placeholder {
+    color: rgba(7, 28, 56, 0.4);
+}
+
+.form-group label {
+    font-size: 0.875rem;
+}
+
+small {
+    font-size: 0.75rem;
+    color: #071C38;
+    margin-top: 0.375rem;
+    opacity: 0.6;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Tùy chỉnh checkbox */
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #134F9F; 
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+}
+
+.forgot-link {
+    text-decoration: none;
+    color: #134F9F;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    border: none;
+    background: #134F9F;
+    color: white;
+    cursor: pointer;
+}
+
+.login-divider {
+    text-align: center;
+    margin: 1.5rem 0 0.75rem;
+    font-size: 0.875rem;
+    color: #071C38;
+}
+
+.divider {
+    height: 1px;
+    background-color: #DCE5F1;
+    margin: 1.5rem 0;
+}
+
+.social-login {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.btn-social {
+    flex: 1;
+    padding: 0.625rem;
+    border-radius: 0.375rem;
+    border: 2px solid #134F9F;
+    font-weight: 500;
+    background: white;
+    cursor: pointer;
+    color: #134F9F;
+    font-size: 1rem;
+}
+
+.login-footer {
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.login-footer a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #071C38;
+}
+
+.login-error, .login-logout {
+    margin-top: 0.75rem;
+    color: red;
+    text-align: center;
+    font-weight: 500;
+}
+
+.login-logout {
+    color: green;
+}
+
+/* Responsive: thu nhỏ cho màn hình laptop nhỏ hoặc Retina */
+@media screen and (max-width: 1440px) {
+    .login-form {
+        padding: 3.5rem;
+        max-width: 26rem;
+    }
+
+    .login-title {
+        font-size: 2rem;
+    }
+
+
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* Retina/High-DPI scaling (Mac) */
+@media (min-resolution: 2dppx) {
+    body {
+        zoom: 0.9;
+    }
+}
+
+/* HOME */
+.section {
+    padding: 40px 32px;
+    background-color: #f8f9fc;
+    margin-bottom: 24px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    font-size: 24px;
+    color: #1a4fa3;
+    margin: 0;
+}
+
+.see-more {
+    font-size: 14px;
+    text-decoration: none;
+    color: #1a4fa3;
+    font-weight: 600;
+}
+
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.book-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    transition: transform 0.2s;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+}
+
+.book-cover {
+    width: 100%;
+    height: 180px;
+    background-color: #e2e8f0;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.book-card h3 {
+    font-size: 16px;
+    text-align: center;
+    margin: 8px 0;
+    color: #333;
+    min-height: 40px;
+}
+
+.book-card p {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    min-height: 40px;
+}
+
+.book-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #1a4fa3;
+    color: white;
+    padding: 32px;
+    margin-top: 40px;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.footer-left {
+    max-width: 50%;
+}
+.footer-left .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.footer-right {
+    text-align: right;
+}
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+.footer-menu li {
+    display: inline-block;
+    margin-left: 16px;
+}
+.footer-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+.social-icons a {
+    margin-left: 16px;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}

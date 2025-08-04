@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div th:fragment="latest">
+    <div class="section-header">
+        <h2>Mới cập nhật</h2>
+    </div>
+    <div class="book-list">
+        <div class="book-card" th:each="book : ${latestBooks}">
+            <div class="book-cover"></div>
+            <h3 th:text="${book.title}"></h3>
+            <p th:text="${book.description}"></p>
+            <div class="book-actions">
+                <button class="btn-outline">Yêu thích</button>
+                <button class="btn-primary">Mượn sách</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
