@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import org.example.spring_jpa.model.User;
@@ -53,6 +54,8 @@ public class UserController {
             userService.registerUser(userDto);
             return "redirect:/users";
     }
+
+
 
     @GetMapping( "/edit/{id}")
     public String updateUser(@PathVariable("id") int id, Model model) {
