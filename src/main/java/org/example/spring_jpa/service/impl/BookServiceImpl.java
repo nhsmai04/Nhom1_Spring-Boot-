@@ -20,4 +20,10 @@ public class BookServiceImpl implements BookService {
     {
         bookRepository.save(book);
     }
+
+    @Override
+    public Iterable<Book> getBooks()
+    {
+        return bookRepository.findAll();
+    }
 }

@@ -29,5 +29,5 @@ public class UserDto {
     @Pattern(regexp = "^(\\+84|0)\\d{9}$", message = "Invalid phone number format")
     private String phone;
 
-
+    private String role;
 }

@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 
 public interface BookService {
     void saveBook(Book book);
+    Iterable<Book> getBooks();
+
 }

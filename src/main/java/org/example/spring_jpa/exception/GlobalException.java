@@ -22,7 +22,7 @@ public class GlobalException {
      return   ResponseEntity.badRequest().body(
                 ResponseObject.builder()
                         .status(HttpStatus.NOT_FOUND)
-                        .message(ex.getMessage())
+                        .message("Có lỗi : không tìm thấy tài nguyen")
                         .data(null)
                         .build()
         );
@@ -30,24 +30,10 @@ public class GlobalException {
     }
 
     // Xử lý validation exception
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ValidationErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        Map<String, String> fieldErrors = new HashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach(error -> fieldErrors.put(error.getField(), error.getDefaultMessage()));
-        return new ValidationErrorResponse(HttpStatus.BAD_REQUEST.value(),"Validation failed", fieldErrors);
-    }
+
 
     // Xử lý email và phone đã tồn tại
-    @ExceptionHandler(DuplicateFieldException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ValidationErrorResponse handleDuplicateFieldException(DuplicateFieldException ex) {
-        return ValidationErrorResponse.builder()
-                .status(HttpStatus.BAD_REQUEST.value())
-                .error("Duplicate field")
-                .fieldErrors(ex.getFieldErrors())
-                .build();
-    }
+
 
     // Fallback
     @ExceptionHandler(Exception.class)

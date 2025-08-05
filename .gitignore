@@ -1,4 +1,4 @@
-.src/main/resources/application.properties# Application properties file
+
 # Add your application specific properties here
 HELP.md
 target/
@@ -10,7 +10,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-
+/src/main/resources/application.properties
 
 
 

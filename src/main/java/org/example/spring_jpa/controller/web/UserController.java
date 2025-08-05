@@ -1,4 +1,4 @@
-package org.example.spring_jpa.controller;
+package org.example.spring_jpa.controller.web;
 
 
 
@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import org.example.spring_jpa.model.User;
+import org.example.spring_jpa.model.MyUser;
 
 @Controller
 @RequestMapping("/users")
@@ -29,7 +29,8 @@ public class UserController {
         this.userService = userService;
     }
 
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public String user(Model model) {
@@ -51,6 +52,7 @@ public class UserController {
             return "new";
              // Ví dụ: trả về trang đăng ký nếu có lỗi
         }
+
             userService.registerUser(userDto);
             return "redirect:/users";
     }
@@ -63,8 +65,8 @@ public class UserController {
        return "edit";
     }
     @PutMapping("/edituser")
-    public String updateUser(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
+    public String updateUser(@ModelAttribute("user") MyUser myUser) {
+        userService.saveUser(myUser);
         return "redirect:/users";
     }
 
@@ -76,10 +78,10 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ResponseObject> getUserById(@PathVariable("id") int id) {
-        User user = userService.getUserById(id);
+        MyUser myUser = userService.getUserById(id);
 
         return ResponseEntity.ok(ResponseObject.builder()
-                        .data(user)
+                        .data(myUser)
                         .status(HttpStatus.OK)
                         .message("Get user information successfully!")
                         .build());
@@ -87,9 +89,9 @@ public class UserController {
 
     @GetMapping("/search")
     public ResponseEntity<ResponseObject> getUserByFirstName(@RequestParam("firstname") String firstname) {
-        User user = userService.getUserByFirstName(firstname);
+        MyUser myUser = userService.getUserByFirstName(firstname);
         return ResponseEntity.ok(ResponseObject.builder()
-                .data(user)
+                .data(myUser)
                 .status(HttpStatus.OK)
                 .message("Get user information successfully!")
                 .build());
