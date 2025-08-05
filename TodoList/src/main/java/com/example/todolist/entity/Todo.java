@@ -19,4 +19,8 @@ public class Todo {
     private String description;
     private boolean completed = false;
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

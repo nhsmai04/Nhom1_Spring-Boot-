@@ -1,58 +1,66 @@
 package com.example.todolist.controller;
 
+import com.example.todolist.entity.Role;
 import com.example.todolist.entity.Todo;
+import com.example.todolist.entity.User;
 import com.example.todolist.exception.TodoNotFoundException;
 import com.example.todolist.service.TodoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.todolist.service.UserService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/todos")
 public class TodoController {
 
     private final TodoService todoService;
+    private final UserService userService;
 
-    @Autowired
-    public TodoController(TodoService todoService) {
+    public TodoController(TodoService todoService, UserService userService) {
         this.todoService = todoService;
+        this.userService = userService;
     }
 
     @GetMapping
-    public List<Todo> getTodos() {
-        return todoService.getAllTodos();
+    public List<Todo> getTodos(@AuthenticationPrincipal User currentUser) {
+        if (currentUser.getRole() == Role.ADMIN) {
+            return todoService.getAllTodos();
+        }
+        return todoService.getTodosByUser(currentUser);
     }
 
+
     @PostMapping
-    public Todo addTodo(@RequestBody Todo todo) {
-        return todoService.createTodo(todo);
+    public Todo addTodo(@AuthenticationPrincipal User currentUser, @RequestBody Todo todo) {
+        User user = userService.findByUsername(currentUser.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User không tồn tại"));
+
+        return todoService.createTodo(todo, user);
     }
 
     @GetMapping("/search")
-    public Todo getTodoByTitle(@RequestParam String title){
-        return todoService.getTodoByTitle(title).orElseThrow(() -> new TodoNotFoundException("Todo title = " +title+ "không tồn tại"));
+    public Todo getTodoByTitle(@RequestParam String title, @AuthenticationPrincipal User currentUser) {
+        return todoService.findByTitleForUser(title, currentUser)
+                .orElseThrow(() -> new TodoNotFoundException("Todo có title: " + title + " không tồn tại"));
     }
 
     @GetMapping("/{id}")
-    public Todo getTodoById(@PathVariable Long id){
-        return todoService.getTodoById(id).orElseThrow(() -> new TodoNotFoundException(" Todo id = " +id + "không tồn tại"));
+    public Todo getTodoById(@PathVariable Long id, @AuthenticationPrincipal User currentUser) {
+        return todoService.findTodoByIdForUser(id, currentUser)
+                .orElseThrow(() -> new TodoNotFoundException("Todo có id: " + id + " không tồn tại"));
     }
 
     @PutMapping("/{id}")
-    public Todo updateTodo(@PathVariable Long id, @RequestBody Todo updatedTodo) {
-        Todo existingTodo = todoService.getTodoById(id).orElseThrow(() -> new TodoNotFoundException(" Todo id = " +id + "không tồn tại"));
-        existingTodo.setTitle(updatedTodo.getTitle());
-        existingTodo.setDescription(updatedTodo.getDescription());
-        existingTodo.setCompleted(updatedTodo.isCompleted());
-
-        return todoService.saveTodo(existingTodo);
+    public Todo updateTodo(@PathVariable Long id, @RequestBody Todo updatedTodo, @AuthenticationPrincipal User currentUser) {
+        return todoService.updateTodoForUser(id, updatedTodo, currentUser);
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteTodoViaGet(@PathVariable Long id) {
-        todoService.deleteTodo(id);
+    @DeleteMapping("/{id}")
+    public String deleteTodo(@PathVariable Long id, @AuthenticationPrincipal User currentUser) {
+        todoService.deleteTodoForUser(id, currentUser);
         return "Đã xóa todo có id = " + id;
     }
 }
