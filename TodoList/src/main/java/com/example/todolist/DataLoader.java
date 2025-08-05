@@ -11,8 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
-import static com.example.todolist.entity.Role.ADMIN;
-import static com.example.todolist.entity.Role.USER;
+import static com.example.todolist.entity.Role.*;
 
 @Configuration
 public class DataLoader {
@@ -23,15 +22,15 @@ public class DataLoader {
                                    PasswordEncoder passwordEncoder) {
         return args -> {
             if (userRepository.count() == 0) {
-                User admin = new User(null, "admin", passwordEncoder.encode("admin123"), "admin@example.com", ADMIN);
-                User user = new User(null, "user", passwordEncoder.encode("oc123"), "oc@example.com", USER);
+                User admin = new User(null, "admin", passwordEncoder.encode("admin123"), "admin@example.com", ROLE_ADMIN);
+                User user = new User(null, "user", passwordEncoder.encode("oc123"), "oc@example.com", ROLE_USER);
                 userRepository.save(admin);
                 userRepository.save(user);
                 System.out.println("✅ Seed user mẫu thành công!");
             }
 
             if (todoRepository.count() == 0) {
-                User user = userRepository.findByUsername("user").orElseThrow();
+                User user = userRepository.findByName("user").orElseThrow();
                 todoRepository.save(new Todo(null, "Học Spring Boot", "Làm dự án TodoList", false, LocalDateTime.now(), user));
                 todoRepository.save(new Todo(null, "Cà phê", "The cup", false, LocalDateTime.now(), user));
                 todoRepository.save(new Todo(null, "Đọc sách", "Cách yêu IT", true, LocalDateTime.now(), user));

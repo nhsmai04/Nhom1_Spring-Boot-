@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
-    Optional<Todo> findByTitleForUser(String title, User user);
+    Optional<Todo> findByTitleAndUser(String title, User user);
     List<Todo> findAllByUser(User user);
     Optional<Todo> findByIdAndUser(Long id, User user);
 }

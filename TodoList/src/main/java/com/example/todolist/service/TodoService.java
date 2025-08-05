@@ -54,7 +54,7 @@ public class TodoService {
     }
 
     public Optional<Todo> findByTitleForUser(String title, User user){
-        return todoRepository.findByTitleForUser(title, user);
+        return todoRepository.findByTitleAndUser(title, user);
     }
 }
 
